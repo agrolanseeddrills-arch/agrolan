@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Primary Colors - Agricultural Green */
+    --color-primary: #2E7D32; /* green-800 */
+    --color-primary-foreground: #FFFFFF; /* white */
+    
+    /* Secondary Colors - Ukrainian Blue */
+    --color-secondary: #1976D2; /* blue-700 */
+    --color-secondary-foreground: #FFFFFF; /* white */
+    
+    /* Accent Colors - High-Contrast Orange */
+    --color-accent: #FF8F00; /* orange-600 */
+    --color-accent-foreground: #FFFFFF; /* white */
+    
+    /* Background Colors */
+    --color-background: #FAFAFA; /* gray-50 */
+    --color-foreground: #1B1B1B; /* gray-900 */
+    
+    /* Surface Colors */
+    --color-card: #FFFFFF; /* white */
+    --color-card-foreground: #1B1B1B; /* gray-900 */
+    --color-popover: #FFFFFF; /* white */
+    --color-popover-foreground: #1B1B1B; /* gray-900 */
+    
+    /* Muted Colors */
+    --color-muted: #F5F5F5; /* gray-100 */
+    --color-muted-foreground: #666666; /* gray-600 */
+    
+    /* Border & Input */
+    --color-border: #E0E0E0; /* gray-300 */
+    --color-input: #E0E0E0; /* gray-300 */
+    --color-ring: #2E7D32; /* green-800 */
+    
+    /* Destructive/Error */
+    --color-destructive: #F44336; /* red-600 */
+    --color-destructive-foreground: #FFFFFF; /* white */
+    --color-error: #F44336; /* red-600 */
+    --color-error-foreground: #FFFFFF; /* white */
+    
+    /* Success */
+    --color-success: #4CAF50; /* green-500 */
+    --color-success-foreground: #FFFFFF; /* white */
+    
+    /* Warning */
+    --color-warning: #FF9800; /* orange-500 */
+    --color-warning-foreground: #FFFFFF; /* white */
+    
+    /* Radius */
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Source Sans Pro', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 50%, #f0f4f8 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  button {
+    font-family: 'Nunito Sans', sans-serif;
+  }
+  
+  blockquote {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Комбінована анімація мигання та пульсації для червоної крапки */
+  @keyframes blink-pulse-red {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+    }
+    25% {
+      opacity: 0.4;
+      transform: scale(0.9);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+      box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+    }
+    75% {
+      opacity: 0.4;
+      transform: scale(0.9);
+    }
+  }
+  
+  .animate-blink-pulse-red {
+    animation: blink-pulse-red 1.5s ease-in-out infinite;
+  }
+  
+  /* Glassmorphism ефекти (рідке скло iOS стиль) - більша прозорість */
+  .glass {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+  }
+  
+  .glass-dark {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(30px) saturate(180%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  }
+  
+  .glass-colored {
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.08);
+  }
+  
+  .glass-card {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  
+  .glass-button {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 
+      0 4px 16px 0 rgba(31, 38, 135, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+  
+  .glass-button:hover {
+    background: rgba(255, 255, 255, 0.6);
+    box-shadow: 
+      0 6px 24px 0 rgba(31, 38, 135, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+  
+  /* Градієнтні фони для glassmorphism - більша прозорість */
+  .glass-gradient-primary {
+    background: linear-gradient(135deg, rgba(46, 125, 50, 0.08) 0%, rgba(255, 255, 255, 0.4) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .glass-gradient-accent {
+    background: linear-gradient(135deg, rgba(255, 143, 0, 0.08) 0%, rgba(255, 255, 255, 0.4) 100%);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Анімація для glassmorphism елементів */
+  @keyframes glass-shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .glass-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 1000px 100%;
+    animation: glass-shimmer 3s infinite;
+  }
+  
+  /* Плавне переливання кольорів при скролі */
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .gradient-scroll {
+    background-size: 200% 200%;
+    animation: gradient-shift 8s ease infinite;
+  }
+  
+  /* Кастомні стилі для range input */
+  input[type="range"].range-input {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  /* Track (трек) для WebKit браузерів */
+  input[type="range"].range-input::-webkit-slider-runnable-track {
+    height: 8px;
+    background: var(--color-muted);
+    border-radius: 4px;
+  }
+  
+  /* Thumb (повзунок) для WebKit */
+  input[type="range"].range-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    margin-top: -6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Track (трек) для Firefox */
+  input[type="range"].range-input::-moz-range-track {
+    height: 8px;
+    background: var(--color-muted);
+    border-radius: 4px;
+  }
+  
+  /* Thumb (повзунок) для Firefox */
+  input[type="range"].range-input::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Filled track для Firefox - автоматично заповнюється */
+  input[type="range"].range-input::-moz-range-progress {
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 4px;
+  }
+  
+  /* Focus стилі */
+  input[type="range"].range-input:focus {
+    outline: none;
+  }
+  
+  input[type="range"].range-input:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+  }
+  
+  input[type="range"].range-input:focus::-moz-range-thumb {
+    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+  }
+  
+  /* Обгортка для заповненого треку в WebKit браузерах */
+  .range-input-wrapper {
+    position: relative;
+    width: 100%;
+    padding: 6px 0;
+  }
+  
+  .range-input-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: var(--range-fill-percent, 0%);
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 4px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+    transition: width 0.1s ease;
+  }
+}
