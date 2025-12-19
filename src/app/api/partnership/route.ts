@@ -3,6 +3,15 @@ import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   try {
+    // Перевірка змінних середовища
+    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
+      console.error('Відсутні змінні середовища GMAIL_USER або GMAIL_APP_PASSWORD');
+      return NextResponse.json(
+        { error: 'Сервер не налаштований для відправки листів' },
+        { status: 500 }
+      );
+    }
+
     const body = await request.json();
     const { companyName, contactPerson, phone, region, businessType } = body;
 
@@ -84,10 +93,21 @@ export async function POST(request: NextRequest) {
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ success: true });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Помилка відправки листа:', error);
+    // Детальніша інформація про помилку для дебагу
+    const errorMessage = error?.message || 'Невідома помилка';
+    console.error('Деталі помилки:', {
+      message: errorMessage,
+      code: error?.code,
+      response: error?.response,
+    });
+    
     return NextResponse.json(
-      { error: 'Помилка відправки форми' },
+      { 
+        error: 'Помилка відправки форми',
+        details: process.env.NODE_ENV === 'development' ? errorMessage : undefined
+      },
       { status: 500 }
     );
   }
